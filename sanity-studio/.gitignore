@@ -1,0 +1,29 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sanity build + system files
+dist/
+.sanity/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# VS Code (optional, if using it)
+.vscode/
+
+# Logs
+logs/
+*.log
+
+# Optional: compiled TS output (if you add build step)
+*.tsbuildinfo
