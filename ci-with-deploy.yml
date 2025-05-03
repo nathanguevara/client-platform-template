@@ -1,0 +1,61 @@
+name: CI Build, Test & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_DB: umami
+          POSTGRES_USER: umami
+          POSTGRES_PASSWORD: password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install --workspaces
+
+      - name: Build Sanity Studio
+        run: |
+          cd sanity-studio
+          npm run build
+
+      - name: Build Frontend
+        run: |
+          cd ../frontend
+          npm run build
+
+      - name: Deploy Studio to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: "./sanity-studio/dist"
+          production-branch: "main"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Trigger Railway Umami Deploy (if needed)
+        run: curl -X POST ${{ secrets.RAILWAY_DEPLOY_HOOK }}
+        if: ${{ secrets.RAILWAY_DEPLOY_HOOK != '' }}
