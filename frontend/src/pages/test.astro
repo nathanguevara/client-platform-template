@@ -1,9 +1,18 @@
 ---
+import '../styles/global.css';
 import { sanity } from '../../lib/sanity'
 import type { Post } from '../../lib/types'
 
 const posts: Post[] = await sanity.fetch(`*[_type == "post"]{title, slug}`)
 ---
+
+<main class="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
+  <h1 class="text-5xl font-extrabold text-blue-600 mb-6">Tailwind is Working!</h1>
+  <p class="text-lg text-gray-700 mb-4">If you see this styled page, Tailwind CSS is set up correctly.</p>
+  <button class="px-6 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition">
+    Test Button
+  </button>
+</main>
 
 <h1>Test Sanity Posts</h1>
 

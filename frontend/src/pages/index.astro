@@ -1,16 +1,17 @@
 ---
-
+import '../styles/global.css';
 ---
-
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<main class="min-h-screen bg-gradient-to-br from-blue-50 to-white flex flex-col items-center justify-center px-4 py-12">
+  <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10 text-center">
+    <img src="/profile.jpg" alt="Profile" class="w-32 h-32 rounded-full mx-auto mb-6 shadow-lg border-4 border-blue-100 object-cover" />
+    <h1 class="text-4xl font-extrabold text-blue-700 mb-2">Your Name</h1>
+    <p class="text-lg text-gray-600 mb-6">Your Job Title or Tagline</p>
+    <p class="text-gray-700 mb-8">
+      your text here <a href="/projects" class="text-blue-600 hover:underline">projects</a> and <a href="/contact" class="text-blue-600 hover:underline">contact me</a> links.
+    </p>
+    <div class="flex justify-center gap-4">
+      <a href="/projects" class="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold shadow hover:bg-blue-700 transition">View Projects</a>
+      <a href="/contact" class="px-6 py-2 bg-gray-200 text-blue-700 rounded-lg font-semibold shadow hover:bg-gray-300 transition">Contact</a>
+    </div>
+  </div>
+</main>
