@@ -1,0 +1,18 @@
+---
+import { sanity } from '../../lib/sanity'
+import type { Post } from '../../lib/types'
+
+const posts: Post[] = await sanity.fetch(`*[_type == "post"]{title, slug}`)
+---
+
+<h1>Test Sanity Posts</h1>
+
+<ul>
+    {posts.map((post: any) => {
+      return (
+        <li>
+          <strong>{post.title}</strong> — {post.slug.current}
+        </li>
+      )
+    })}
+  </ul>

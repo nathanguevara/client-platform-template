@@ -1,0 +1,20 @@
+---
+import '../styles/global.css'
+
+// Props from the parent page
+const { children } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white text-gray-900 font-sans">
+    <main class="max-w-4xl mx-auto px-4 py-8">
+      {children}
+    </main>
+  </body>
+</html>

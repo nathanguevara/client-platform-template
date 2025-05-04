@@ -1,0 +1,15 @@
+{
+    "name": "form-handler",
+    "version": "1.0.0",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.39.5",
+        "body-parser": "^1.20.2",
+        "dotenv": "^16.5.0",
+        "express": "^4.18.2"
+    }
+}
